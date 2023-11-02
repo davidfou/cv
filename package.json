@@ -39,6 +39,8 @@
     "@heroicons/react": "^2.0.18",
     "@icons-pack/react-simple-icons": "^9.1.0",
     "@tailwindcss/typography": "^0.5.10",
+    "http-server": "^14.1.1",
+    "playwright": "^1.39.0",
     "prop-types": "^15.8.1",
     "tailwindcss": "^3.3.5"
   }
