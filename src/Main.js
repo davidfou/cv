@@ -80,7 +80,7 @@ function MainSection({ title, children }) {
   return (
     <section>
       {title && <h3 className="px-4 py-2 text-lg bg-slate-200">{title}</h3>}
-      <div className="border-2 border-r-0 border-slate-300 bg-slate-100 p-4 rounded-l-md shadow-inner text-sm text-justify">
+      <div className="border-2 border-r-0 border-slate-300 bg-slate-100 p-4 rounded-l-md text-sm text-justify">
         {children}
       </div>
     </section>

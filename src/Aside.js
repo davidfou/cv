@@ -63,6 +63,7 @@ const SKILL_ITEMS = formatItems([
   "JavaScript/TypeScript",
   "React",
   "Node.js",
+  "REST/GraphQL API",
   "MongoDB/PostgreSQL",
   "Jest/Vitest",
   "Playwright",
@@ -72,7 +73,7 @@ const SKILL_ITEMS = formatItems([
 function AsideSection({ title, children }) {
   return (
     <section className="mx-2 text-sm">
-      <h5 className="text-lg my-4 py-1 px-2 text-center rounded-r-lg shadow-inner border-slate-300 border-2 border-l-0 bg-slate-100 -ml-2">
+      <h5 className="text-lg my-4 py-1 px-2 text-center rounded-r-lg border-slate-300 border-2 border-l-0 bg-slate-100 -ml-2">
         {title}
       </h5>
       <div className="px-2">{children}</div>
@@ -88,7 +89,7 @@ function Aside() {
   return (
     <aside className="basis-1/3 bg-slate-200 min-h-full relative">
       <img
-        className="object-cover overflow-hidden object-bottom h-32 w-32 mt-4 rounded-full m-auto bg-gradient-to-t from-slate-300 to-slate-100 shadow-inner border-2 border-slate-300"
+        className="object-cover overflow-hidden object-bottom h-32 w-32 mt-4 rounded-full m-auto bg-gradient-to-t from-slate-300 to-slate-100 border-2 border-slate-300"
         src={img}
         alt="logo"
       />
