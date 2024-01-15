@@ -1,4 +1,3 @@
-import { spawn } from "node:child_process";
 import { promisify } from "node:util";
 import { chromium } from "playwright";
 import httpServer from "http-server";

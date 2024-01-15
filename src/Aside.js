@@ -15,8 +15,8 @@ const CONTACT_ITEMS = [
   {
     key: "email",
     Icon: InboxIcon,
-    href: "mailto:fr.david.fournier@gmail.com",
-    content: "fr.david.fournier@gmail.com",
+    href: "mailto:david@isyt.dev",
+    content: "david@isyt.dev",
   },
   {
     key: "phone",
@@ -94,9 +94,9 @@ function Aside() {
         alt="logo"
       />
       <AsideSection title="Contact">
-        <ul>
+        <ul className="space-y-1">
           {CONTACT_ITEMS.map(({ key, Icon, content, href }) => (
-            <li className="my-1" key={key}>
+            <li key={key}>
               <a href={href} className="flex items-center">
                 <span className="flex-grow-0">
                   <Icon className="h-4 w-4 mr-1 text-slate-600" />
@@ -108,9 +108,9 @@ function Aside() {
         </ul>
       </AsideSection>
       <AsideSection title="Education">
-        <ul>
+        <ul className="space-y-4">
           {EDUCATION_ITEMS.map(({ key, year, title, school }) => (
-            <li key={key} className="mb-4">
+            <li key={key}>
               <p className="text-sm text-slate-600">{year}</p>
               <p>{title}</p>
               <p className="text-sm text-slate-600 flex items-center">

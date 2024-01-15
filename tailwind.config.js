@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        sm: ["0.875rem", { lineHeight: "1.125rem" }],
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };

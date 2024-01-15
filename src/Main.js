@@ -7,10 +7,25 @@ const ABOUT_ME =
   "I am a French professional living in Belgium with a deep passion for building software. Over the years, I have honed my skills as a software developer and, more recently, shifted my focus towards leading and mentoring teams. I find immense joy in helping others grow and succeed in their roles. With 11 years of experience in the software development industry, I have not only excelled in technical aspects but also in fostering collaborative and innovative environments. I am dedicated to continuous learning and thrive in dynamic, team-oriented settings.";
 const WORK_ITEMS = [
   {
+    key: "offered",
+    startMonth: "Nov",
+    startYear: "2023",
+    endMonth: "Jan",
+    endYear: "2024",
+    title: "Product developer",
+    company: "Offered",
+    link: "https://offered.ai",
+    location: "Remote",
+    accomplishments: formatItems([
+      "Strategically balanced the trade-off between speed and quality.",
+      "Implemented automatic tests to evaluate ChatGPT prompts performance.",
+    ]),
+  },
+  {
     key: "luzmo",
     startMonth: "Nov",
     startYear: "2021",
-    endMonth: "Nov",
+    endMonth: "Oct",
     endYear: "2023",
     title: "Backend Team Lead",
     company: "Luzmo",
@@ -36,9 +51,7 @@ const WORK_ITEMS = [
     location: "Leuven/remote – Belgium",
     accomplishments: formatItems([
       "Led a team of 5 developers, collaborating with mob sessions.",
-      "Setup better tools for unit and end-to-end tests.",
       "Adoption of continuous deployment and feature-flags.",
-      "Identifed/fixed root causes of some performance issues.",
       "Improved monitoring with insightful metrics.",
     ]),
   },
@@ -71,7 +84,6 @@ const WORK_ITEMS = [
       "Migration from Backbone to React.",
       "Build desktop application with Electron.",
       "Third-party integrations (Box, Dropbox, Slack, Cisco Spark, ...).",
-      "SSO implementation with SAML protocol.",
     ]),
   },
 ];
@@ -80,7 +92,7 @@ function MainSection({ title, children }) {
   return (
     <section>
       {title && <h3 className="px-4 py-2 text-lg bg-slate-200">{title}</h3>}
-      <div className="border-2 border-r-0 border-slate-300 bg-slate-100 p-4 rounded-l-md text-sm text-justify">
+      <div className="border-2 border-r-0 border-slate-300 bg-slate-100 p-4 rounded-l-md text-sm text-justify space-y-4">
         {children}
       </div>
     </section>
@@ -101,10 +113,9 @@ function WorkExperienceItem({
   link,
   location,
   accomplishments,
-  isLast,
 }) {
   return (
-    <div className={`${isLast ? "" : "mb-4"} text-left`}>
+    <div className="text-left">
       <div className="flex text-base">
         <div className="grow">
           <span className="font-bold">{title}</span> - {company}
@@ -146,7 +157,6 @@ WorkExperienceItem.propTypes = {
       content: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  isLast: PropTypes.bool.isRequired,
 };
 
 function Main() {
@@ -163,11 +173,7 @@ function Main() {
       <MainSection title="About me">{ABOUT_ME}</MainSection>
       <MainSection title="Work Experience">
         {WORK_ITEMS.map(({ key, ...props }, index) => (
-          <WorkExperienceItem
-            key={key}
-            {...props}
-            isLast={index === WORK_ITEMS.length - 1}
-          />
+          <WorkExperienceItem key={key} {...props} />
         ))}
       </MainSection>
     </main>
