@@ -5,7 +5,7 @@ import httpServer from "http-server";
 let server;
 let browser;
 try {
-  server = httpServer.createServer({ root: "./build" });
+  server = httpServer.createServer({ root: "./dist" });
   await promisify(server.listen.bind(server))(3000);
   browser = await chromium.launch({
     headless: true,

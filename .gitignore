@@ -8,9 +8,11 @@
 # testing
 /coverage
 
-# production
-/build
+# build
 /dist
+
+# local configs
+*.local.json
 
 # misc
 .DS_Store
