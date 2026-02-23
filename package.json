@@ -3,8 +3,8 @@
   "version": "1.1.0",
   "private": true,
   "dependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "scripts": {
     "start": "vite",
@@ -12,13 +12,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@heroicons/react": "2.0.18",
-    "@icons-pack/react-simple-icons": "9.1.0",
+    "@heroicons/react": "2.2.0",
+    "@icons-pack/react-simple-icons": "13.11.2",
     "@tailwindcss/vite": "4.2.1",
-    "@vitejs/plugin-react": "4.7.0",
+    "@vitejs/plugin-react": "5.1.4",
     "playwright": "1.58.2",
     "prop-types": "15.8.1",
     "tailwindcss": "4.2.1",
-    "vite": "5.4.21"
+    "vite": "7.3.1"
   }
 }
