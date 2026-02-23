@@ -1,23 +1,24 @@
 import { MapPinIcon, LinkIcon } from "@heroicons/react/24/outline";
 
-import { formatItems } from "./helpers";
+import { cn, formatItems } from "./helpers";
 
 const ABOUT_ME =
-  "I am a French professional living in Belgium with a deep passion for building software. Over the years, I have honed my skills as a software developer and, more recently, shifted my focus towards leading and mentoring teams. I find immense joy in helping others grow and succeed in their roles. With 11 years of experience in the software development industry, I have not only excelled in technical aspects but also in fostering collaborative and innovative environments. I am dedicated to continuous learning and thrive in dynamic, team-oriented settings.";
+  "Software engineer with 14 years of experience who cares as much about how a team operates as what it ships. I'm mostly influenced by Extreme Programming, Building Evolutionary Architecture and Team Topologies. In practice, this means I push for short feedback loops, shared ownership, and disciplined habits like testing after every regression. I'm at my best when I can help a team deliver steadily without heroics.";
 const WORK_ITEMS = [
   {
-    key: "offered",
-    startMonth: "Nov",
-    startYear: "2023",
-    endMonth: "Jan",
-    endYear: "2024",
-    title: "Product developer",
-    company: "Offered",
-    link: "https://offered.ai",
-    location: "Remote",
+    key: "segments",
+    startMonth: "May",
+    startYear: "2024",
+    isPresent: true as const,
+    title: "Staff Engineer",
+    company: "Segments (acquired by Uber)",
+    link: "https://segments.ai",
+    location: "Leuven/remote – Belgium",
     accomplishments: formatItems([
-      "Strategically balanced the trade-off between speed and quality.",
-      "Implemented automatic tests to evaluate ChatGPT prompts performance.",
+      "Rebuilt the timeline from the ground up, unblocking new features and improving the user experience.",
+      "Redesigned the side-effects architecture to reduce production incidents and make the codebase easier to extend.",
+      "Strengthened the testing strategy, reducing regressions reaching production.",
+      "Mentored 4 engineers through code reviews and pair programming.",
     ]),
   },
   {
@@ -31,11 +32,11 @@ const WORK_ITEMS = [
     link: "https://luzmo.com",
     location: "Leuven/remote – Belgium",
     accomplishments: formatItems([
-      "Led a team of 7 members with limit WIP and continuous delivery principles.",
-      "Rescoped the team to 3 specific domains to bring focus and autonomy.",
-      "Moved away from Gitflow to trunk-based development.",
-      "Data migration from Cassandra to ClickHouse.",
-      "Coaching and refactoring on code using streaming.",
+      "Led a team of 7 applying WIP limits and continuous delivery.",
+      "Restructured the team into 3 focused domains to increase autonomy.",
+      "Migrated from Gitflow to trunk-based development.",
+      "Migrated data from Cassandra to ClickHouse.",
+      "Coached the team on Node.js streams and refactored data pipelines.",
     ]),
   },
   {
@@ -49,9 +50,9 @@ const WORK_ITEMS = [
     link: "https://urbantz.com",
     location: "Leuven/remote – Belgium",
     accomplishments: formatItems([
-      "Led a team of 5 developers, collaborating with mob sessions.",
-      "Adoption of continuous deployment and feature-flags.",
-      "Improved monitoring with insightful metrics.",
+      "Led a team of 5 developers using mob programming.",
+      "Rolled out continuous deployment and feature flags.",
+      "Built monitoring dashboards to improve incident detection and response.",
     ]),
   },
   {
@@ -65,9 +66,9 @@ const WORK_ITEMS = [
     link: "https://datacamp.com",
     location: "Leuven – Belgium",
     accomplishments: formatItems([
-      "Modernization of the build/deployment process.",
-      "Setup better practices (linter, unit/e2e tests, error monitoring).",
-      "Refactored application boot to allow server-side rendering.",
+      "Modernized the build and deployment pipeline.",
+      "Introduced linting, unit/e2e testing, and error monitoring.",
+      "Refactored application boot to enable server-side rendering.",
     ]),
   },
   {
@@ -80,9 +81,9 @@ const WORK_ITEMS = [
     company: "Azendoo",
     location: "Bordeaux – France",
     accomplishments: formatItems([
-      "Migration from Backbone to React.",
-      "Build desktop application with Electron.",
-      "Third-party integrations (Box, Dropbox, Slack, Cisco Spark, ...).",
+      "Migrated the frontend from Backbone to React.",
+      "Built a desktop application with Electron.",
+      "Integrated third-party services (Box, Dropbox, Slack, Cisco Spark).",
     ]),
   },
 ];
@@ -103,23 +104,25 @@ function MainSection({ title, children }: MainSectionProps) {
   );
 }
 
-interface WorkExperienceItemProps {
+type WorkExperienceItemProps = {
   startMonth: string;
   startYear: string;
-  endMonth: string;
-  endYear: string;
   title: string;
   company: string;
   link?: string;
   location: string;
   accomplishments: { key: string; content: string }[];
-}
+} & (
+    | { isPresent: true; endMonth?: never; endYear?: never }
+    | { isPresent?: false; endMonth: string; endYear: string }
+  );
 
 function WorkExperienceItem({
   startMonth,
   startYear,
   endMonth,
   endYear,
+  isPresent,
   title,
   company,
   link,
@@ -128,15 +131,15 @@ function WorkExperienceItem({
 }: WorkExperienceItemProps) {
   return (
     <div className="text-left">
-      <div className="flex text-base">
+      <div className="flex items-center text-base">
         <div className="grow">
           <span className="font-bold">{title}</span> - {company}
         </div>
-        <div className="grow-0">
-          {startMonth} {startYear} – {endMonth} {endYear}
+        <div className="grow-0 text-sm">
+          {startMonth} {startYear} – {isPresent ? "Present" : `${endMonth} ${endYear}`}
         </div>
       </div>
-      <div className="text-slate-500  mb-1">
+      <div className="text-slate-500 mb-1 pl-4">
         <MapPinIcon className="h-4 w-4 inline-block mr-1 stroke-1" />
         {location}{" "}
         {link && (
@@ -155,19 +158,17 @@ function WorkExperienceItem({
   );
 }
 
-function Main() {
+function Main({ className }: { className?: string }) {
   return (
-    <main className="basis-2/3 pl-2">
-      <div className="mt-4" />
+    <main className={cn("pt-4", className)}>
       <MainSection>
-        <h1 className="text-4xl font-bold mt-2">David Fournier</h1>
-        <h2 className="mt-2 text-xl mb-2">
-          {" "}
-          Technical Lead / Senior Full Stack developer
+        <h1 className="text-4xl font-bold">David Fournier</h1>
+        <h2 className="mt-4 text-xl">
+          Code, people, delivery. In whatever order.
         </h2>
       </MainSection>
       <MainSection title="About me">{ABOUT_ME}</MainSection>
-      <MainSection title="Work Experience">
+      <MainSection title="Relevant Experience">
         {WORK_ITEMS.map(({ key, ...props }) => (
           <WorkExperienceItem key={key} {...props} />
         ))}

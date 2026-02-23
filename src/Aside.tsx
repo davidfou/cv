@@ -15,7 +15,7 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 import img from "./picture.png";
-import { formatItems } from "./helpers";
+import { cn, formatItems } from "./helpers";
 
 const CONTACT_ITEMS = [
   {
@@ -69,11 +69,12 @@ const SKILL_ITEMS = formatItems([
   "JavaScript/TypeScript",
   "React",
   "Node.js",
-  "REST/GraphQL API",
-  "MongoDB/PostgreSQL",
-  "Jest/Vitest",
-  "Playwright",
+  "PostgreSQL",
+  "Jest/Vitest/Playwright",
+  "Grafana",
   "CloudWatch/LogInsights",
+  "Trunk-based Development",
+  "Pair/Mob Programming",
 ]);
 
 interface AsideSectionProps {
@@ -92,9 +93,9 @@ function AsideSection({ title, children }: AsideSectionProps) {
   );
 }
 
-function Aside() {
+function Aside({ className }: { className?: string }) {
   return (
-    <aside className="basis-1/3 bg-slate-200 min-h-full relative">
+    <aside className={cn("bg-slate-200 min-h-full relative", className)}>
       <img
         className="object-cover overflow-hidden object-bottom h-32 w-32 mt-4 rounded-full m-auto bg-linear-to-t from-slate-300 to-slate-100 border-2 border-slate-300"
         src={img}
@@ -148,8 +149,8 @@ function Aside() {
           Browser extension to add a comment box to GitHub/GitLab pull requests
         </div>
         <div className="text-slate-600">
-          <a href="https://github.com/davidfou/conventionalcomments-web-extension ">
-            github.com/davidfou/conventionalcomments-web-extension
+          <a href="https://isyt.dev/cc-web-ext">
+            isyt.dev/cc-web-ext
           </a>
         </div>
       </AsideSection>
