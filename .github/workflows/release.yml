@@ -32,5 +32,5 @@ jobs:
       - name: 🚀 Create release
         uses: fnkr/github-action-ghr@v1
         env:
-          GHR_PATH: dist/
+          GHR_PATH: build/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

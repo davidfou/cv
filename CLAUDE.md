@@ -22,7 +22,7 @@ The app renders a two-column CV layout (1/3 sidebar + 2/3 main content) sized to
 - **`src/Aside.jsx`** — Left sidebar: profile photo, contact info, education, languages, skills, and side project. All data is defined as constants at the top of the file.
 - **`src/Main.jsx`** — Right main area: name/title header, about me, and work experience timeline. All data is defined as constants at the top of the file.
 - **`src/helpers.js`** — `formatItems()` utility that converts string arrays into `{key, content}` objects for rendering lists.
-- **`scripts/make-pdf.mjs`** — Spins up an http-server on the `dist/` directory, uses Playwright Chromium to render the page, and exports it as `dist/CV_David_Fournier.pdf`.
+- **`scripts/make-pdf.mjs`** — Starts Vite's preview server on the `dist/` build output, uses Playwright Chromium to render the page, and exports it as `build/CV_David_Fournier.pdf`.
 
 ## Key Details
 

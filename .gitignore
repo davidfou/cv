@@ -10,6 +10,7 @@
 
 # build
 /dist
+/build
 
 # local configs
 *.local.json
