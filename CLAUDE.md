@@ -17,19 +17,19 @@ This is a personal CV/resume web application for David Fournier, built as a sing
 
 The app renders a two-column CV layout (1/3 sidebar + 2/3 main content) sized to A4:
 
-- **`index.html`** — HTML entry point at project root (Vite convention). References `/src/index.jsx` as module script.
-- **`src/index.jsx`** — App entry point. Renders the `<Aside>` and `<Main>` components side-by-side in a flex container with A4 dimensions.
-- **`src/Aside.jsx`** — Left sidebar: profile photo, contact info, education, languages, skills, and side project. All data is defined as constants at the top of the file.
-- **`src/Main.jsx`** — Right main area: name/title header, about me, and work experience timeline. All data is defined as constants at the top of the file.
-- **`src/helpers.js`** — `formatItems()` utility that converts string arrays into `{key, content}` objects for rendering lists.
+- **`index.html`** — HTML entry point at project root (Vite convention). References `/src/index.tsx` as module script.
+- **`src/index.tsx`** — App entry point. Renders the `<Aside>` and `<Main>` components side-by-side in a flex container with A4 dimensions.
+- **`src/Aside.tsx`** — Left sidebar: profile photo, contact info, education, languages, skills, and side project. All data is defined as constants at the top of the file.
+- **`src/Main.tsx`** — Right main area: name/title header, about me, and work experience timeline. All data is defined as constants at the top of the file.
+- **`src/helpers.ts`** — `formatItems()` utility that converts string arrays into `{key, content}` objects for rendering lists.
 - **`scripts/make-pdf.mjs`** — Starts Vite's preview server on the `dist/` build output, uses Playwright Chromium to render the page, and exports it as `build/CV_David_Fournier.pdf`.
 
 ## Key Details
 
 - Node.js 24.13.1 (specified in `.tool-versions`)
-- CV content (work experience, skills, education, contact) is hardcoded as constants in `Aside.jsx` and `Main.jsx` — there is no external data source.
+- CV content (work experience, skills, education, contact) is hardcoded as constants in `Aside.tsx` and `Main.tsx` — there is no external data source.
 - Vite with `@vitejs/plugin-react` and `@tailwindcss/vite` (config in `vite.config.mjs`).
 - Tailwind v4 with CSS-based configuration in `src/index.css` (`@theme` directive). Custom font size override for `sm`.
 - Icons from `@heroicons/react` and `@icons-pack/react-simple-icons`.
-- PropTypes used for component prop validation.
+- TypeScript with strict mode for compile-time type checking (`tsconfig.json`). Type check with `npx tsc --noEmit`.
 - CI/CD: GitHub Actions workflow (`.github/workflows/release.yml`) triggers on `v*` tags — builds the app, generates the PDF, and creates a GitHub release with the PDF in `dist/`.
