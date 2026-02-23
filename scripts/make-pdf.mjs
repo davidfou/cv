@@ -1,12 +1,10 @@
-import { promisify } from "node:util";
+import { preview } from "vite";
 import { chromium } from "playwright";
-import httpServer from "http-server";
 
 let server;
 let browser;
 try {
-  server = httpServer.createServer({ root: "./dist" });
-  await promisify(server.listen.bind(server))(3000);
+  server = await preview({ preview: { port: 3000 } });
   browser = await chromium.launch({
     headless: true,
   });
@@ -21,8 +19,8 @@ try {
   });
 } catch (error) {
   process.exitCode = 1;
+  console.error(error);
 } finally {
   await browser?.close();
-  server?.close();
-  console.log("end");
+  server?.httpServer.close();
 }
