@@ -28,8 +28,8 @@ The app renders a two-column CV layout (1/3 sidebar + 2/3 main content) sized to
 
 - Node.js 20.9.0 (specified in `.tool-versions`)
 - CV content (work experience, skills, education, contact) is hardcoded as constants in `Aside.jsx` and `Main.jsx` — there is no external data source.
-- Vite with `@vitejs/plugin-react` (config in `vite.config.mjs`). PostCSS configured in `postcss.config.js` with Tailwind and autoprefixer.
-- Tailwind v3 with `@tailwindcss/typography` plugin. Custom font size override for `sm` in `tailwind.config.js`.
+- Vite with `@vitejs/plugin-react` and `@tailwindcss/vite` (config in `vite.config.mjs`).
+- Tailwind v4 with CSS-based configuration in `src/index.css` (`@theme` directive). Custom font size override for `sm`.
 - Icons from `@heroicons/react` and `@icons-pack/react-simple-icons`.
 - PropTypes used for component prop validation.
 - CI/CD: GitHub Actions workflow (`.github/workflows/release.yml`) triggers on `v*` tags — builds the app, generates the PDF, and creates a GitHub release with the PDF in `dist/`.

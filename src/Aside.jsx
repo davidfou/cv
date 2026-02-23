@@ -89,7 +89,7 @@ function Aside() {
   return (
     <aside className="basis-1/3 bg-slate-200 min-h-full relative">
       <img
-        className="object-cover overflow-hidden object-bottom h-32 w-32 mt-4 rounded-full m-auto bg-gradient-to-t from-slate-300 to-slate-100 border-2 border-slate-300"
+        className="object-cover overflow-hidden object-bottom h-32 w-32 mt-4 rounded-full m-auto bg-linear-to-t from-slate-300 to-slate-100 border-2 border-slate-300"
         src={img}
         alt="logo"
       />
@@ -98,10 +98,10 @@ function Aside() {
           {CONTACT_ITEMS.map(({ key, Icon, content, href }) => (
             <li key={key}>
               <a href={href} className="flex items-center">
-                <span className="flex-grow-0">
+                <span className="grow-0">
                   <Icon className="h-4 w-4 mr-1 text-slate-600" />
                 </span>
-                <span className="flex-grow-1">{content}</span>
+                <span className="grow">{content}</span>
               </a>
             </li>
           ))}
@@ -114,10 +114,10 @@ function Aside() {
               <p className="text-sm text-slate-600">{year}</p>
               <p>{title}</p>
               <p className="text-sm text-slate-600 flex items-center">
-                <span className="flex-grow-0">
+                <span className="grow-0">
                   <MapPinIconOutline className="h-4 w-4 inline-block mr-1" />
                 </span>
-                <span className="flex-grow-1">{school}</span>
+                <span className="grow">{school}</span>
               </p>
             </li>
           ))}
