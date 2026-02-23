@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { MapPinIcon, LinkIcon } from "@heroicons/react/24/outline";
 
 import { formatItems } from "./helpers";
@@ -88,7 +87,12 @@ const WORK_ITEMS = [
   },
 ];
 
-function MainSection({ title, children }) {
+interface MainSectionProps {
+  title?: string;
+  children?: React.ReactNode;
+}
+
+function MainSection({ title, children }: MainSectionProps) {
   return (
     <section>
       {title && <h3 className="px-4 py-2 text-lg bg-slate-200">{title}</h3>}
@@ -98,10 +102,18 @@ function MainSection({ title, children }) {
     </section>
   );
 }
-MainSection.propTypes = {
-  title: PropTypes.string,
-  childe: PropTypes.element,
-};
+
+interface WorkExperienceItemProps {
+  startMonth: string;
+  startYear: string;
+  endMonth: string;
+  endYear: string;
+  title: string;
+  company: string;
+  link?: string;
+  location: string;
+  accomplishments: { key: string; content: string }[];
+}
 
 function WorkExperienceItem({
   startMonth,
@@ -113,7 +125,7 @@ function WorkExperienceItem({
   link,
   location,
   accomplishments,
-}) {
+}: WorkExperienceItemProps) {
   return (
     <div className="text-left">
       <div className="flex text-base">
@@ -142,22 +154,6 @@ function WorkExperienceItem({
     </div>
   );
 }
-WorkExperienceItem.propTypes = {
-  startMonth: PropTypes.string.isRequired,
-  startYear: PropTypes.string.isRequired,
-  endMonth: PropTypes.string.isRequired,
-  endYear: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  company: PropTypes.string.isRequired,
-  link: PropTypes.string,
-  location: PropTypes.string.isRequired,
-  accomplishments: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
 
 function Main() {
   return (
@@ -172,7 +168,7 @@ function Main() {
       </MainSection>
       <MainSection title="About me">{ABOUT_ME}</MainSection>
       <MainSection title="Work Experience">
-        {WORK_ITEMS.map(({ key, ...props }, index) => (
+        {WORK_ITEMS.map(({ key, ...props }) => (
           <WorkExperienceItem key={key} {...props} />
         ))}
       </MainSection>
