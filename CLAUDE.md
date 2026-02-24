@@ -15,13 +15,13 @@ This is a personal CV/resume web application for David Fournier, built as a sing
 
 ## Architecture
 
-The app renders a two-column CV layout (1/3 sidebar + 2/3 main content) sized to A4:
+The app renders a two-column CV layout using CSS grid (3-column grid: sidebar spans 1, main spans 2) sized to A4:
 
 - **`index.html`** — HTML entry point at project root (Vite convention). References `/src/index.tsx` as module script.
-- **`src/index.tsx`** — App entry point. Renders the `<Aside>` and `<Main>` components side-by-side in a flex container with A4 dimensions.
+- **`src/index.tsx`** — App entry point. Renders the `<Aside>` and `<Main>` components side-by-side in a grid container with A4 dimensions.
 - **`src/Aside.tsx`** — Left sidebar: profile photo, contact info, education, languages, skills, and side project. All data is defined as constants at the top of the file.
 - **`src/Main.tsx`** — Right main area: name/title header, about me, and work experience timeline. All data is defined as constants at the top of the file.
-- **`src/helpers.ts`** — `formatItems()` utility that converts string arrays into `{key, content}` objects for rendering lists.
+- **`src/helpers.ts`** — `formatItems()` utility that converts string arrays into `{key, content}` objects for rendering lists. `cn()` utility for merging Tailwind classes (uses `tailwind-merge`).
 - **`scripts/make-pdf.mjs`** — Starts Vite's preview server on the `dist/` build output, uses Playwright Chromium to render the page, and exports it as `build/CV_David_Fournier.pdf`.
 
 ## Key Details
@@ -30,6 +30,7 @@ The app renders a two-column CV layout (1/3 sidebar + 2/3 main content) sized to
 - CV content (work experience, skills, education, contact) is hardcoded as constants in `Aside.tsx` and `Main.tsx` — there is no external data source.
 - Vite with `@vitejs/plugin-react` and `@tailwindcss/vite` (config in `vite.config.mjs`).
 - Tailwind v4 with CSS-based configuration in `src/index.css` (`@theme` directive). Custom font size override for `sm`.
+- Inter font loaded locally via `@fontsource/inter` (bundled in build, no external requests).
 - Icons from `@heroicons/react` and `@icons-pack/react-simple-icons`.
 - TypeScript with strict mode for compile-time type checking (`tsconfig.json`). Type check with `npx tsc --noEmit`.
 - CI/CD: GitHub Actions workflow (`.github/workflows/release.yml`) triggers on `v*` tags — builds the app, generates the PDF, and creates a GitHub release with the PDF in `dist/`.
