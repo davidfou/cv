@@ -67,8 +67,7 @@ const EDUCATION_ITEMS = [
 
 const SKILL_ITEMS = formatItems([
   "JavaScript/TypeScript",
-  "React",
-  "Node.js",
+  "React / Node.js",
   "PostgreSQL",
   "Jest/Vitest/Playwright",
   "Grafana",
